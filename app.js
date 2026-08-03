@@ -1,6 +1,21 @@
 (() => {
   "use strict";
 
+  // ---- Decorative snowfall --------------------------------------------------
+
+  const sky = document.getElementById("sky");
+  const flakeCount = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 22;
+  for (let i = 0; i < flakeCount; i++) {
+    const flake = document.createElement("div");
+    flake.className = "flake";
+    flake.style.left = Math.random() * 100 + "%";
+    flake.style.setProperty("--drift-x", (Math.random() * 60 - 30) + "px");
+    flake.style.width = flake.style.height = (3 + Math.random() * 4) + "px";
+    flake.style.animationDuration = (9 + Math.random() * 8) + "s";
+    flake.style.animationDelay = (Math.random() * -14) + "s";
+    sky.appendChild(flake);
+  }
+
   const state = {
     name: "Léo",
     answers: {},
@@ -63,7 +78,6 @@
 
   const childNameInput = document.getElementById("childName");
   const btnStartCall = document.getElementById("btnStartCall");
-  const incomingCallerName = document.getElementById("incomingCallerName");
   const btnAnswer = document.getElementById("btnAnswer");
   const btnDecline = document.getElementById("btnDecline");
   const captionText = document.getElementById("captionText");
@@ -157,7 +171,7 @@
 
     if (step.end) {
       const btn = document.createElement("button");
-      btn.className = "btn btn-primary btn-big";
+      btn.className = "btn btn-primary";
       btn.textContent = "🎄 Raccrocher";
       btn.addEventListener("click", endCall);
       answerZone.appendChild(btn);
@@ -223,7 +237,6 @@
 
   btnStartCall.addEventListener("click", () => {
     state.name = childNameInput.value.trim() || "Léo";
-    incomingCallerName.textContent = "Père Noël";
     showScreen("incoming");
   });
 
@@ -257,12 +270,12 @@
     Object.entries(state.answers).forEach(([key, value]) => {
       const li = document.createElement("li");
       const label = labels[key] || key;
-      li.innerHTML = `<strong>${label}</strong>${value}`;
+      li.innerHTML = `<strong>${label}</strong><span>${value}</span>`;
       summaryList.appendChild(li);
     });
     if (!Object.keys(state.answers).length) {
       const li = document.createElement("li");
-      li.innerHTML = "<strong>Appel</strong>Terminé avant la fin de la conversation.";
+      li.innerHTML = "<strong>Appel</strong><span>Terminé avant la fin de la conversation.</span>";
       summaryList.appendChild(li);
     }
   }
