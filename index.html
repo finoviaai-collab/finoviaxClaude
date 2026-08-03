@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>Appel du Père Noël</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="sky" id="sky"></div>
+
+<main>
+
+  <section id="screen-setup" class="screen">
+    <div class="card">
+      <p class="eyebrow">Pôle Nord · Ligne directe</p>
+      <div class="badge-ring">🎅</div>
+      <h1>Appel du Père Noël</h1>
+      <p class="subtitle">Préparez une surprise : le Père Noël appelle pour discuter avec votre enfant et prendre sa commande.</p>
+
+      <label class="field">
+        <span>Prénom de l'enfant</span>
+        <input id="childName" type="text" value="Léo" maxlength="20">
+      </label>
+
+      <button id="btnStartCall" class="btn btn-primary">📞 Passer l'appel</button>
+      <p class="hint">Astuce : activez le haut-parleur et tenez l'écran face à l'enfant.</p>
+    </div>
+  </section>
+
+  <section id="screen-incoming" class="screen hidden">
+    <div class="card incoming">
+      <p class="eyebrow">Appel entrant</p>
+      <div class="badge-ring">🎅</div>
+      <h2>Père Noël</h2>
+      <p class="caller-loc">Pôle Nord</p>
+      <div class="call-actions">
+        <div class="action-col">
+          <button id="btnDecline" class="btn btn-round btn-decline" aria-label="Refuser">✖</button>
+          <span class="label">Refuser</span>
+        </div>
+        <div class="action-col">
+          <button id="btnAnswer" class="btn btn-round btn-answer" aria-label="Répondre">📞</button>
+          <span class="label">Répondre</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-call" class="screen hidden">
+    <div class="card call">
+      <div class="call-header">
+        <div class="badge-ring small" id="santaAvatar">🎅</div>
+        <div>
+          <h2>Père Noël</h2>
+          <span id="callTimer" class="timer">00:00</span>
+        </div>
+      </div>
+
+      <div class="caption-box">
+        <p id="captionText">…</p>
+      </div>
+
+      <div id="answerZone" class="answer-zone"></div>
+
+      <div class="call-footer">
+        <button id="btnReplay" class="btn btn-ghost" title="Réécouter">🔊 Réécouter</button>
+        <button id="btnHangup" class="btn btn-round btn-decline" aria-label="Raccrocher">📞</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="screen-summary" class="screen hidden">
+    <div class="card summary">
+      <p class="eyebrow">Souvenir de Noël</p>
+      <div class="badge-ring">🎄</div>
+      <h1>Résumé de l'appel</h1>
+      <ul id="summaryList" class="summary-list"></ul>
+      <button id="btnNewCall" class="btn btn-primary">📞 Nouvel appel</button>
+    </div>
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
